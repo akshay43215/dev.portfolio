@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Enterprise Software Developer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #0ea5e9;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 26px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            gap: 4px;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+
+        .logo-main {
+            font-family: Impact, 'Arial Narrow', sans-serif;
+            font-size: 24px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .logo-main span {
+            color: #0ea5e9;
+        }
+
+        .logo-sub {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        nav ul { display: flex; gap: 4px; list-style: none; }
+        nav a {
+            display: flex; align-items: center; gap: 6px;
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            padding: 7px 14px; border-radius: 8px; font-weight: 500;
+            font-size: 14px; transition: color 0.2s, background 0.2s;
+        }
+        nav a:hover { color: white; background: rgba(255,255,255,0.08); }
+        nav a.active {
+            color: white;
+            background: rgba(14,165,233,0.25);
+            border: 0.5px solid rgba(14,165,233,0.5);
+        }
+
+        #hero {
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        #hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        #hero .title {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 16px;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #06b6d4;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--text-dark);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            background-color: var(--bg-white);
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        /* ===== EXPERTISE SECTION ===== */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .expertise-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .expertise-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .expertise-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .expertise-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .expertise-card li {
+            padding: 8px 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .expertise-card li:before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .project-header h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .project-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h4 {
+            color: var(--primary-color);
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .project-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-content li {
+            padding: 6px 0;
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .project-content li:before {
+            content: "→";
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* ===== DATABASE SECTION ===== */
+        .db-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0f4ff 100%);
+            padding: 40px;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .db-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .db-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .db-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .db-feature {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--success-color);
+        }
+
+        .db-feature strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .skills-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .skills-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skills-table tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            background-color: var(--bg-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ===== IMPACT SECTION ===== */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .impact-card strong {
+            color: var(--accent-color);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .impact-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ===== KEYWORDS SECTION ===== */
+        .keywords-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .keywords-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .keywords-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .keyword {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .keyword:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        .print-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .print-btn {
+                display: none;
+            }
+        }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 36px;
+            }
+
+            #hero .title {
+                font-size: 18px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .print-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        section {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+    <script>
+        const navLinks = document.querySelectorAll('#navLinks a');
+        const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
+
+        window.addEventListener('scroll', () => {
+        let current = sections[0];
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 120) current = sec;
+        });
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
+        });
+
+        navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById(link.dataset.section)
+            .scrollIntoView({ behavior: 'smooth' });
+        });
+        });
+    </script>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">📄 Print/PDF</button>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"  onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+                    <span class="logo-main">PORT<span>FOLIO</span></span>
+                    <span class="logo-sub">Akshay Krishna</span>
+                </div>
+                <ul id="navLinks">
+                    <li><a href="#expertise" data-section="expertise"><i class="ti ti-bolt"></i> Expertise</a></li>
+                    <li><a href="#projects" data-section="projects"><i class="ti ti-layout-grid"></i> Projects</a></li>
+                    <li><a href="#skills" data-section="skills"><i class="ti ti-code"></i> Skills</a></li>
+                    <li><a href="#impact" data-section="impact"><i class="ti ti-trending-up"></i> Impact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+
+            <div id="hero">
+                <h1>Enterprise Software Developer</h1>
+                <p class="title">ASP.NET Core | Oracle SQL | Fintech Solutions</p>
+                <p>Architect of scalable enterprise applications with expertise in Customer Relationship Management, Lead Conversion Systems, and Database Design. Proven track record delivering full-stack solutions in financial services.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+            <!-- EXPERTISE SECTION -->
+            <section id="expertise">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Core competencies developed through enterprise-scale projects</p>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h3>🔧 Full Stack Development</h3>
+                        <ul>
+                            <li>ASP.NET Core Web APIs</li>
+                            <li>RESTful Architecture & Design</li>
+                            <li>Front-End (HTML5, CSS3, JavaScript)</li>
+                            <li>Responsive UI/UX Implementation</li>
+                            <li>API Documentation (Swagger/Postman)</li>
+                        </ul>
+                    </div>
+
+                    <div class="expertise-card">
+                        <h3>🗄️ Database Architecture</h3>
+                        <ul>
+                            <li>Oracle 11g/12c Administration</li>
+                            <li>Advanced PL/SQL Optimization</li>
+                            <li>Stored Procedures & Triggers</li>
+                            <li>Schema Design & Data Modeling</li>
+                            <li>CRUD Operations Excellence</li>
+                        </ul>
+                    </div>
+
+                    <div class="expertise-card">
+                        <h3>🏢 Enterprise Systems</h3>
+                        <ul>
+                            <li>Customer Relationship Management</li>
+                            <li>Lead Management Pipelines</li>
+                            <li>Workflow Automation</li>
+                            <li>Microservices Architecture</li>
+                            <li>Fintech Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects">
+                <h2 class="section-title">Project Portfolio</h2>
+                <p class="section-subtitle">Production applications supporting enterprise operations</p>
+
+                <div class="projects-grid">
+
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>CRC-CRO Application</h3>
+                            <p class="project-subtitle">Customer Relationship Module & Lead Management</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ASP.NET Core</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">Swagger API</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Lead conversion tracking pipeline</li>
+                                <li>Customer call centre module</li>
+                                <li>Automated API documentation</li>
+                                <li>Legacy system migration from scratch(ITCportal-CRC_NEW)</li>
+                                <li>Integrated real-time click-to-call functionality using EDAS WebRTC</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Streamlined lead management workflow</li>
+                                <li>Enhanced call centre efficiency</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>CRM Application</h3>
+                            <p class="project-subtitle">Online Gold Loan Customer Relationship System</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">.NET Core</span>
+                                <span class="tech-tag">RESTful API</span>
+                                <span class="tech-tag">Oracle SQL</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Customer interaction and activity logging</li>
+                                <li>Service complaint tracking module</li>
+                                <li>CRC integration layer</li>
+                                <li>Sales pipeline monitoring</li>
+                                <li>Real-time reporting and analytics dashboards</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Complaint resolution automation</li>
+                                <li>Enhanced customer service delivery</li>
+                                <li>E-book on Customer Transactions and Activity</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Lead Management API</h3>
+                            <p class="project-subtitle">Internal & Public API Gateway Layer</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ASP.NET Core</span>
+                                <span class="tech-tag">API Gateway</span>
+                                <span class="tech-tag">Authentication</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>GeneralMafilAPIs (Internal services)</li>
+                                <li>LeadManagement (Public API)</li>
+                                <li>Cross-service authentication</li>
+                                <li>Route optimization & load balancing</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Secure external integrations</li>
+                                <li>Scalable multi-service communication</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>CRC Daily Scheduler</h3>
+                            <p class="project-subtitle">Lead Conversion Tracking Windows Service</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Windows Service</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">Batch Processing</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Automated daily batch processing</li>
+                                <li>Converted leads calculation engine</li>
+                                <li>Real-time reporting pipeline</li>
+                                <li>Data synchronization across systems</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Handles 1000s of daily transactions</li>
+                                <li>Zero-touch analytics reporting</li>
+                                <li>Uncovers trends to optimize performance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Paperless Approval Workflow</h3>
+                            <p class="project-subtitle">Digital Approval & Team Communication System</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Web Application</span>
+                                <span class="tech-tag">Workflow Engine</span>
+                                <span class="tech-tag">Document Management</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Hierarchical approval routing</li>
+                                <li>Internal notes collaboration channel</li>
+                                <li>Complexity-based escalation rules</li>
+                                <li>MD-level approval controls</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Eliminated manual paper processing</li>
+                                <li>Reduced approval cycles by 60%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Customer Survey Platform</h3>
+                            <p class="project-subtitle">Web-Based Feedback Collection & Analytics</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Web Application</span>
+                                <span class="tech-tag">SMS Integration</span>
+                                <span class="tech-tag">Analytics</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <Li>Built dynamic SMS template delivery system</Li>
+                                <li>Internal SMS delivery pipeline with send-ack</li>
+                                <Li>Generated personalized survey URLs at scale</Li>
+                                <Li>Developed real-time analytics dashboard</Li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Built end-to-end feedback collection pipeline</li>
+                                <li>Increased campaign visibility and tracking</li>
+                                <li>Scaled customer feedback collection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>IT Tracker</h3>
+                            <p class="project-subtitle">Application Change & Release Management</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Web Application</span>
+                                <span class="tech-tag">Workflow Management</span>
+                                <span class="tech-tag">Audit Trail</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Module change assignment & tracking</li>
+                                <li>Application testing workflow</li>
+                                <li>Release deployment pipeline</li>
+                                <li>Compliance audit logging</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Centralized change management</li>
+                                <li>Enhanced release control</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>HoApps & MaSales</h3>
+                            <p class="project-subtitle">Enterprise Head Office & Branch Application Platform</p>
+                        </div>
+                        <div class="project-content">
+                            <h4>Tech Stack</h4>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Web Application</span>
+                                <span class="tech-tag">Role-Based Access</span>
+                                <span class="tech-tag">Multi-Branch</span>
+                            </div>
+                            <h4>Deliverables</h4>
+                            <ul>
+                                <li>Employee-centric platform</li>
+                                <li>Role-based form accessibility</li>
+                                <li>Data visualization dashboards</li>
+                                <li>Multi-branch operations support</li>
+                            </ul>
+                            <h4>Impact</h4>
+                            <ul>
+                                <li>Authentication and Authorization</li>
+                                <li>Streamlined employee workflows</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- MAFIL DATABASE OBJECTS -->
+            <section id="database">
+                <h2 class="section-title">MAFIL Database Objects</h2>
+                <p class="section-subtitle">Core infrastructure supporting 8+ enterprise applications</p>
+
+                <div class="db-section">
+                    <h3>🏛️ Enterprise Database Architecture</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-dark);">Designed and maintained the comprehensive Oracle PL/SQL database layer (MANA0809 namespace) serving as the central data backbone for all production applications.</p>
+
+                    <div class="db-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Tables</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Stored Procedures</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">40+</div>
+                            <div class="stat-label">Database Triggers</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Connected Apps</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 30px; margin-bottom: 15px;">Database Components</h3>
+                    <div class="db-features">
+                        <div class="db-feature">
+                            <strong>Normalized Schema Design</strong>
+                            Optimized table structures following 3NF principles with referential integrity constraints for data consistency.
+                        </div>
+                        <div class="db-feature">
+                            <strong>Stored Procedures</strong>
+                            Complex business logic execution layer handling lead conversion calculations, approval workflows, and reporting queries.
+                        </div>
+                        <div class="db-feature">
+                            <strong>Database Triggers</strong>
+                            Real-time data validation, audit trail generation, and automated business rule enforcement at database level.
+                        </div>
+                        <div class="db-feature">
+                            <strong>Sequences & Auto-Increment</strong>
+                            Centralized ID generation ensuring unique identifiers across distributed applications without conflicts.
+                        </div>
+                        <div class="db-feature">
+                            <strong>CRUD Operations Optimization</strong>
+                            Query optimization, indexing strategies, and execution plan tuning for sub-second response times.
+                        </div>
+                        <div class="db-feature">
+                            <strong>Data Integrity Protocols</strong>
+                            Constraint management, referential integrity, and transaction isolation levels ensuring ACID compliance.
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(30, 58, 138, 0.2); color: var(--text-light);">
+                        <strong>Key Involvement:</strong> Direct expertise in querying, data modeling, and optimization for all interconnected applications. Handles complex JOIN operations, aggregations, and real-time analytics across 50+ tables with performance as critical requirement.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills">
+                <h2 class="section-title">Technical Skills Matrix</h2>
+                <p class="section-subtitle">Comprehensive technology stack and specializations</p>
+
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="skill-category">Programming Languages</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">C#</span>
+                                    <span class="skill-badge">PL/SQL</span>
+                                    <span class="skill-badge">JavaScript</span>
+                                    <span class="skill-badge">HTML5</span>
+                                    <span class="skill-badge">CSS3</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Frameworks & Libraries</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">ASP.NET Core</span>
+                                    <span class="skill-badge">Entity Framework</span>
+                                    <span class="skill-badge">RESTful APIs</span>
+                                    <span class="skill-badge">LINQ</span>
+                                    <span class="skill-badge">Dependency Injection</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Databases</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Oracle 11g/12c</span>
+                                    <span class="skill-badge">Stored Procedures</span>
+                                    <span class="skill-badge">Query Optimization</span>
+                                    <span class="skill-badge">Data Modeling</span>
+                                    <span class="skill-badge">Triggers & Sequences</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Architectural Patterns</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Microservices</span>
+                                    <span class="skill-badge">API Gateway</span>
+                                    <span class="skill-badge">Event-Driven Architecture</span>
+                                    <span class="skill-badge">Layered Architecture</span>
+                                    <span class="skill-badge">SOLID Principles</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Domain Expertise</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Fintech Solutions</span>
+                                    <span class="skill-badge">CRM Systems</span>
+                                    <span class="skill-badge">Lead Management</span>
+                                    <span class="skill-badge">Workflow Automation</span>
+                                    <span class="skill-badge">ERP Integration</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Tools & Platforms</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Visual Studio</span>
+                                    <span class="skill-badge">Git</span>
+                                    <span class="skill-badge">Swagger/Postman</span>
+                                    <span class="skill-badge">SQL Developer</span>
+                                    <span class="skill-badge">Windows Services</span>
+                                    <span class="skill-badge">IIS</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Practices & Methodologies</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">OOP Principles</span>
+                                    <span class="skill-badge">Code Optimization</span>
+                                    <span class="skill-badge">API Documentation</span>
+                                    <span class="skill-badge">Performance Tuning</span>
+                                    <span class="skill-badge">Unit Testing</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- IMPACT SECTION -->
+            <section id="impact">
+                <h2 class="section-title">Enterprise Impact</h2>
+                <p class="section-subtitle">Measurable contributions to mission-critical systems</p>
+
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <strong>✓ Database Architecture</strong>
+                        <p>Architected centralized Oracle database layer with 50+ tables supporting 8 interconnected production applications processing millions of transactions daily with 99.9% uptime.</p>
+                    </div>
+                    <div class="impact-card">
+                        <strong>✓ Lead Conversion System</strong>
+                        <p>Designed scalable lead tracking system processing 1000s of daily transactions, calculating converted leads in real-time with automated batch scheduling and zero manual intervention.</p>
+                    </div>
+                    <div class="impact-card">
+                        <strong>✓ Full-Stack CRM Solution</strong>
+                        <p>Delivered complete CRM application for OGL product line with complaint resolution workflows, reducing support resolution time by 40% and improving customer satisfaction metrics.</p>
+                    </div>
+                    <div class="impact-card">
+                        <strong>✓ API Gateway Infrastructure</strong>
+                        <p>Built secure API gateway enabling safe communication between internal systems and external third-party services with cross-checking authentication keys and intelligent routing.</p>
+                    </div>
+                    <div class="impact-card">
+                        <strong>✓ Paperless Automation</strong>
+                        <p>Implemented workflow automation reducing manual approval processes by 60%, streamlining hierarchical approval routing from branch level to MD-level decision making.</p>
+                    </div>
+                    <div class="impact-card">
+                        <strong>✓ Real-time Analytics</strong>
+                        <p>Established automated reporting pipeline with Windows Service scheduler generating real-time analytics dashboards, eliminating manual data consolidation processes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KEYWORDS SECTION -->
+            <section class="keywords-section">
+                <h3>ATS-Optimized Keywords</h3>
+                <div class="keywords-cloud">
+                    <span class="keyword">ASP.NET Core</span>
+                    <span class="keyword">RESTful API</span>
+                    <span class="keyword">Oracle SQL</span>
+                    <span class="keyword">PL/SQL</span>
+                    <span class="keyword">C#</span>
+                    <span class="keyword">Microservices</span>
+                    <span class="keyword">Database Design</span>
+                    <span class="keyword">API Gateway</span>
+                    <span class="keyword">Lead Management</span>
+                    <span class="keyword">CRM Systems</span>
+                    <span class="keyword">Enterprise Applications</span>
+                    <span class="keyword">Workflow Automation</span>
+                    <span class="keyword">CRUD Operations</span>
+                    <span class="keyword">Fintech Solutions</span>
+                    <span class="keyword">Customer Relationship Management</span>
+                    <span class="keyword">ERP Integration</span>
+                    <span class="keyword">Stored Procedures</span>
+                    <span class="keyword">Query Optimization</span>
+                    <span class="keyword">Windows Services</span>
+                    <span class="keyword">Performance Tuning</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <a href="https://github.com/akshay43215/" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/akshay-krishna10" target="_blank">LinkedIn</a>
+                <a href="mailto:akshaykrishna24996@gmail.com">Email</a>
+                <a href="tel:+917306544148" aria-label="Call 73065 44148">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Enterprise Software Developer Portfolio. All rights reserved.</p>
+                <p>Last Updated: June 2026</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
