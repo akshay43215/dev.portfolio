@@ -54,6 +54,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            position: relative;
         }
 
         .logo {
@@ -164,7 +165,9 @@
             cursor: pointer;
             padding: 8px;
             gap: 5px;
-            z-index: 101;
+            z-index: 102;
+            align-items: center;
+            justify-content: center;
         }
 
         .hamburger span {
@@ -173,53 +176,51 @@
             background-color: white;
             border-radius: 2px;
             transition: all 0.3s ease;
+            display: block;
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            transform: rotate(45deg) translate(10px, 10px);
         }
 
         .hamburger.active span:nth-child(2) {
             opacity: 0;
+            width: 0;
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Mobile Menu */
         .mobile-menu {
-            display: none;
             position: absolute;
             top: 100%;
+            left: 0;
             right: 0;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            width: 100%;
-            padding: 15px 20px;
             list-style: none;
             flex-direction: column;
-            gap: 8px;
-            animation: slideDown 0.3s ease;
+            gap: 6px;
+            padding: 15px 20px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .mobile-menu.active {
+            z-index: 101;
             display: flex;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+            padding: 15px 20px;
         }
 
         .mobile-menu li {
             width: 100%;
+            list-style: none;
         }
 
         .mobile-menu a {
@@ -730,8 +731,8 @@
 
         /* ===== RESPONSIVE - TABLET & MOBILE ===== */
         @media (max-width: 768px) {
-            nav ul {
-                display: none;
+            #navLinks {
+                display: none !important;
             }
 
             .hamburger {
@@ -812,11 +813,8 @@
                 letter-spacing: 1px;
             }
 
-            .mobile-menu {
-                width: 100vw;
-                right: -20px;
-                padding: 12px 20px;
-                gap: 6px;
+            .mobile-menu.active {
+                max-height: 600px;
             }
 
             .mobile-menu a {
@@ -871,42 +869,68 @@
         }
     </style>
     <script>
-        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
-        const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
+            const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const logo = document.querySelector('.logo');
 
-        // Toggle hamburger menu
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
+            // Toggle hamburger menu
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+            }
 
-        // Close menu when link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                e.preventDefault();
-                document.getElementById(link.dataset.section)
-                .scrollIntoView({ behavior: 'smooth' });
+            // Close menu when link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.dataset.section;
+                    
+                    // Close menu
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileMenu) mobileMenu.classList.remove('active');
+                    
+                    // Navigate to section
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
-        });
 
-        // Update active link on scroll
-        window.addEventListener('scroll', () => {
-            let current = sections[0];
-            sections.forEach(sec => {
-                if (window.scrollY >= sec.offsetTop - 120) current = sec;
+            // Update active link on scroll
+            window.addEventListener('scroll', () => {
+                let current = sections[0];
+                sections.forEach(sec => {
+                    if (sec && window.scrollY >= sec.offsetTop - 120) current = sec;
+                });
+                navLinks.forEach(a => {
+                    a.classList.toggle('active', a.dataset.section === (current ? current.id : null));
+                });
             });
-            navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
-        });
 
-        // Logo click to home
-        document.querySelector('.logo').addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.getElementById('hero').scrollIntoView({behavior:'smooth'});
+            // Logo click to home
+            if (logo) {
+                logo.addEventListener('click', function() {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (mobileMenu) mobileMenu.classList.remove('active');
+                    document.getElementById('hero').scrollIntoView({behavior:'smooth'});
+                });
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target) && hamburger && mobileMenu) {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
         });
     </script>
 </head>
