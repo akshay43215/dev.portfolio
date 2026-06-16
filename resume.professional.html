@@ -42,8 +42,8 @@
         header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
-            padding: 12px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 26px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -53,204 +53,52 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
-            position: relative;
         }
 
         .logo {
             display: flex;
             flex-direction: column;
-            line-height: 1.1;
-            gap: 2px;
+            line-height: 1;
+            gap: 4px;
             cursor: pointer;
             opacity: 1;
             transition: opacity 0.2s;
-            white-space: nowrap;
-            flex-shrink: 0;
         }
-        .logo:hover { opacity: 0.85; }
+        .logo:hover { opacity: 0.8; }
 
         .logo-main {
-            font-family: 'Courier New', monospace;
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            font-family: Impact, 'Arial Narrow', sans-serif;
+            font-size: 24px;
+            letter-spacing: -1px;
             text-transform: uppercase;
             color: white;
         }
 
         .logo-main span {
             color: #0ea5e9;
-            font-weight: 900;
         }
 
         .logo-sub {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            font-size: 8px;
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.55);
         }
 
-        /* Desktop Navigation */
-        nav ul { 
-            display: flex; 
-            gap: 2px; 
-            list-style: none;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        nav li {
-            position: relative;
-        }
-
+        nav ul { display: flex; gap: 4px; list-style: none; }
         nav a {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: rgba(255,255,255,0.8); 
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center; gap: 6px;
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            padding: 7px 14px; border-radius: 8px; font-weight: 500;
+            font-size: 14px; transition: color 0.2s, background 0.2s;
         }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-color);
-            transition: left 0.3s ease;
-        }
-
-        nav a:hover {
-            color: white;
-            background: rgba(14, 165, 233, 0.15);
-        }
-
-        nav a:hover::before {
-            left: 0;
-        }
-
+        nav a:hover { color: white; background: rgba(255,255,255,0.08); }
         nav a.active {
             color: white;
-            background: rgba(14, 165, 233, 0.25);
-            border: 1px solid rgba(14, 165, 233, 0.6);
-        }
-
-        nav a.active::before {
-            left: 0;
-        }
-
-        nav i {
-            font-size: 13px;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            gap: 5px;
-            z-index: 102;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2.5px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            width: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            list-style: none;
-            flex-direction: column;
-            gap: 6px;
-            padding: 15px 20px;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 101;
-            display: flex;
-        }
-
-        .mobile-menu.active {
-            max-height: 500px;
-            opacity: 1;
-            padding: 15px 20px;
-        }
-
-        .mobile-menu li {
-            width: 100%;
-            list-style: none;
-        }
-
-        .mobile-menu a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255,255,255,0.9); 
-            text-decoration: none;
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 13px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .mobile-menu a:hover {
-            color: white;
-            background: rgba(14, 165, 233, 0.25);
-        }
-
-        .mobile-menu a.active {
-            color: white;
-            background: rgba(14, 165, 233, 0.25);
-            border: 1px solid rgba(14, 165, 233, 0.6);
-        }
-
-        .mobile-menu i {
-            font-size: 14px;
-            min-width: 16px;
+            background: rgba(14,165,233,0.25);
+            border: 0.5px solid rgba(14,165,233,0.5);
         }
 
         #hero {
@@ -728,40 +576,19 @@
                 display: none;
             }
         }
-
-        /* ===== RESPONSIVE - TABLET & MOBILE ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            #navLinks {
-                display: none !important;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            header {
-                padding: 10px 0;
-            }
-
-            nav {
-                gap: 12px;
-            }
-
-            .logo-main {
-                font-size: 16px;
-            }
-
-            .logo-sub {
-                font-size: 7px;
-                letter-spacing: 1px;
-            }
-
             #hero h1 {
                 font-size: 36px;
             }
 
             #hero .title {
                 font-size: 18px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
             }
 
             .section-title {
@@ -794,60 +621,6 @@
             }
         }
 
-        @media (max-width: 480px) {
-            header {
-                padding: 8px 0;
-            }
-
-            nav {
-                gap: 8px;
-            }
-
-            .logo-main {
-                font-size: 14px;
-                letter-spacing: 0px;
-            }
-
-            .logo-sub {
-                font-size: 6px;
-                letter-spacing: 1px;
-            }
-
-            .mobile-menu.active {
-                max-height: 600px;
-            }
-
-            .mobile-menu a {
-                padding: 8px 10px;
-                font-size: 12px;
-            }
-
-            #hero {
-                padding-top: 60px;
-            }
-
-            #hero h1 {
-                font-size: 28px;
-            }
-
-            #hero .title {
-                font-size: 16px;
-            }
-
-            #hero p {
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .print-btn {
-                padding: 6px 12px;
-                font-size: 0.75em;
-            }
-        }
-
         /* ===== ANIMATIONS ===== */
         @keyframes fadeIn {
             from {
@@ -869,68 +642,23 @@
         }
     </style>
     <script>
-        // Wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
-            const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const logo = document.querySelector('.logo');
+        const navLinks = document.querySelectorAll('#navLinks a');
+        const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
 
-            // Toggle hamburger menu
-            if (hamburger) {
-                hamburger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    hamburger.classList.toggle('active');
-                    mobileMenu.classList.toggle('active');
-                });
-            }
+        window.addEventListener('scroll', () => {
+        let current = sections[0];
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 120) current = sec;
+        });
+        navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
+        });
 
-            // Close menu when link is clicked
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionId = this.dataset.section;
-                    
-                    // Close menu
-                    if (hamburger) hamburger.classList.remove('active');
-                    if (mobileMenu) mobileMenu.classList.remove('active');
-                    
-                    // Navigate to section
-                    const section = document.getElementById(sectionId);
-                    if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-
-            // Update active link on scroll
-            window.addEventListener('scroll', () => {
-                let current = sections[0];
-                sections.forEach(sec => {
-                    if (sec && window.scrollY >= sec.offsetTop - 120) current = sec;
-                });
-                navLinks.forEach(a => {
-                    a.classList.toggle('active', a.dataset.section === (current ? current.id : null));
-                });
-            });
-
-            // Logo click to home
-            if (logo) {
-                logo.addEventListener('click', function() {
-                    if (hamburger) hamburger.classList.remove('active');
-                    if (mobileMenu) mobileMenu.classList.remove('active');
-                    document.getElementById('hero').scrollIntoView({behavior:'smooth'});
-                });
-            }
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!nav.contains(e.target) && hamburger && mobileMenu) {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                }
-            });
+        navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById(link.dataset.section)
+            .scrollIntoView({ behavior: 'smooth' });
+        });
         });
     </script>
 </head>
@@ -940,22 +668,11 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
+                <div class="logo"  onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
                     <span class="logo-main">PORT<span>FOLIO</span></span>
                     <span class="logo-sub">Akshay Krishna</span>
                 </div>
                 <ul id="navLinks">
-                    <li><a href="#expertise" data-section="expertise"><i class="ti ti-bolt"></i> Expertise</a></li>
-                    <li><a href="#projects" data-section="projects"><i class="ti ti-layout-grid"></i> Projects</a></li>
-                    <li><a href="#skills" data-section="skills"><i class="ti ti-code"></i> Skills</a></li>
-                    <li><a href="#impact" data-section="impact"><i class="ti ti-trending-up"></i> Impact</a></li>
-                </ul>
-                <button class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="mobile-menu">
                     <li><a href="#expertise" data-section="expertise"><i class="ti ti-bolt"></i> Expertise</a></li>
                     <li><a href="#projects" data-section="projects"><i class="ti ti-layout-grid"></i> Projects</a></li>
                     <li><a href="#skills" data-section="skills"><i class="ti ti-code"></i> Skills</a></li>
@@ -972,7 +689,7 @@
             <div id="hero">
                 <h1>Enterprise Software Developer</h1>
                 <p class="title">ASP.NET Core | Oracle SQL | Fintech Solutions</p>
-                <p>Architect of scalable enterprise applications with expertise in Customer Relationship Management, Lead Conversion Systems, and Database Design. Proven track record delivering f[...]
+                <p>Architect of scalable enterprise applications with expertise in Customer Relationship Management, Lead Conversion Systems, and Database Design. Proven track record delivering full-stack solutions in financial services.</p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#contact" class="btn btn-secondary">Get in Touch</a>
@@ -1265,7 +982,7 @@
 
                 <div class="db-section">
                     <h3>🏛️ Enterprise Database Architecture</h3>
-                    <p style="margin-bottom: 20px; color: var(--text-dark);">Designed and maintained the comprehensive Oracle PL/SQL database layer (MANA0809 namespace) serving as the central dat[...]
+                    <p style="margin-bottom: 20px; color: var(--text-dark);">Designed and maintained the comprehensive Oracle PL/SQL database layer (MANA0809 namespace) serving as the central data backbone for all production applications.</p>
 
                     <div class="db-stats">
                         <div class="stat-box">
@@ -1282,35 +999,48 @@
                         </div>
                         <div class="stat-box">
                             <div class="stat-number">8+</div>
-                            <div class="stat-label">Enterprise Apps</div>
+                            <div class="stat-label">Connected Apps</div>
                         </div>
                     </div>
 
+                    <h3 style="margin-top: 30px; margin-bottom: 15px;">Database Components</h3>
                     <div class="db-features">
                         <div class="db-feature">
-                            <strong>Core Tables:</strong>
-                            <span>Customers, Leads, Accounts, Transactions, Interactions</span>
+                            <strong>Normalized Schema Design</strong>
+                            Optimized table structures following 3NF principles with referential integrity constraints for data consistency.
                         </div>
                         <div class="db-feature">
-                            <strong>Business Logic:</strong>
-                            <span>100+ Stored Procedures, Calculated fields, Triggers</span>
+                            <strong>Stored Procedures</strong>
+                            Complex business logic execution layer handling lead conversion calculations, approval workflows, and reporting queries.
                         </div>
                         <div class="db-feature">
-                            <strong>Data Integrity:</strong>
-                            <span>Constraints, References, Audit trails, Versioning</span>
+                            <strong>Database Triggers</strong>
+                            Real-time data validation, audit trail generation, and automated business rule enforcement at database level.
                         </div>
                         <div class="db-feature">
-                            <strong>Performance:</strong>
-                            <span>Indexing strategies, Query optimization, Partitioning</span>
+                            <strong>Sequences & Auto-Increment</strong>
+                            Centralized ID generation ensuring unique identifiers across distributed applications without conflicts.
+                        </div>
+                        <div class="db-feature">
+                            <strong>CRUD Operations Optimization</strong>
+                            Query optimization, indexing strategies, and execution plan tuning for sub-second response times.
+                        </div>
+                        <div class="db-feature">
+                            <strong>Data Integrity Protocols</strong>
+                            Constraint management, referential integrity, and transaction isolation levels ensuring ACID compliance.
                         </div>
                     </div>
+
+                    <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(30, 58, 138, 0.2); color: var(--text-light);">
+                        <strong>Key Involvement:</strong> Direct expertise in querying, data modeling, and optimization for all interconnected applications. Handles complex JOIN operations, aggregations, and real-time analytics across 50+ tables with performance as critical requirement.
+                    </p>
                 </div>
             </section>
 
             <!-- SKILLS SECTION -->
             <section id="skills">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Comprehensive skill set across the full development stack</p>
+                <h2 class="section-title">Technical Skills Matrix</h2>
+                <p class="section-subtitle">Comprehensive technology stack and specializations</p>
 
                 <table class="skills-table">
                     <thead>
@@ -1321,57 +1051,87 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="skill-category">🔵 Backend</td>
+                            <td class="skill-category">Programming Languages</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">C#</span>
+                                    <span class="skill-badge">PL/SQL</span>
+                                    <span class="skill-badge">JavaScript</span>
+                                    <span class="skill-badge">HTML5</span>
+                                    <span class="skill-badge">CSS3</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Frameworks & Libraries</td>
                             <td>
                                 <div class="skill-items">
                                     <span class="skill-badge">ASP.NET Core</span>
-                                    <span class="skill-badge">C#</span>
-                                    <span class="skill-badge">REST APIs</span>
-                                    <span class="skill-badge">Design Patterns</span>
+                                    <span class="skill-badge">Entity Framework</span>
+                                    <span class="skill-badge">RESTful APIs</span>
+                                    <span class="skill-badge">LINQ</span>
+                                    <span class="skill-badge">Dependency Injection</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="skill-category">🗄️ Database</td>
+                            <td class="skill-category">Databases</td>
                             <td>
                                 <div class="skill-items">
                                     <span class="skill-badge">Oracle 11g/12c</span>
-                                    <span class="skill-badge">PL/SQL</span>
                                     <span class="skill-badge">Stored Procedures</span>
-                                    <span class="skill-badge">Database Design</span>
+                                    <span class="skill-badge">Query Optimization</span>
+                                    <span class="skill-badge">Data Modeling</span>
+                                    <span class="skill-badge">Triggers & Sequences</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="skill-category">🎨 Frontend</td>
-                            <td>
-                                <div class="skill-items">
-                                    <span class="skill-badge">HTML5</span>
-                                    <span class="skill-badge">CSS3</span>
-                                    <span class="skill-badge">JavaScript</span>
-                                    <span class="skill-badge">Responsive Design</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="skill-category">🛠️ Tools & Platforms</td>
-                            <td>
-                                <div class="skill-items">
-                                    <span class="skill-badge">Visual Studio</span>
-                                    <span class="skill-badge">SQL Developer</span>
-                                    <span class="skill-badge">Postman</span>
-                                    <span class="skill-badge">Git</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="skill-category">🏗️ Architecture</td>
+                            <td class="skill-category">Architectural Patterns</td>
                             <td>
                                 <div class="skill-items">
                                     <span class="skill-badge">Microservices</span>
-                                    <span class="skill-badge">System Design</span>
                                     <span class="skill-badge">API Gateway</span>
-                                    <span class="skill-badge">Scalability</span>
+                                    <span class="skill-badge">Event-Driven Architecture</span>
+                                    <span class="skill-badge">Layered Architecture</span>
+                                    <span class="skill-badge">SOLID Principles</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Domain Expertise</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Fintech Solutions</span>
+                                    <span class="skill-badge">CRM Systems</span>
+                                    <span class="skill-badge">Lead Management</span>
+                                    <span class="skill-badge">Workflow Automation</span>
+                                    <span class="skill-badge">ERP Integration</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Tools & Platforms</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">Visual Studio</span>
+                                    <span class="skill-badge">Git</span>
+                                    <span class="skill-badge">Swagger/Postman</span>
+                                    <span class="skill-badge">SQL Developer</span>
+                                    <span class="skill-badge">Windows Services</span>
+                                    <span class="skill-badge">IIS</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="skill-category">Practices & Methodologies</td>
+                            <td>
+                                <div class="skill-items">
+                                    <span class="skill-badge">OOP Principles</span>
+                                    <span class="skill-badge">Code Optimization</span>
+                                    <span class="skill-badge">API Documentation</span>
+                                    <span class="skill-badge">Performance Tuning</span>
+                                    <span class="skill-badge">Unit Testing</span>
                                 </div>
                             </td>
                         </tr>
@@ -1381,52 +1141,61 @@
 
             <!-- IMPACT SECTION -->
             <section id="impact">
-                <h2 class="section-title">Business Impact</h2>
-                <p class="section-subtitle">Measurable outcomes from technical contributions</p>
+                <h2 class="section-title">Enterprise Impact</h2>
+                <p class="section-subtitle">Measurable contributions to mission-critical systems</p>
 
                 <div class="impact-grid">
                     <div class="impact-card">
-                        <strong>📊 60% Approval Cycle Reduction</strong>
-                        <p>Paperless workflow automation eliminated manual processing and approval bottlenecks across the organization.</p>
+                        <strong>✓ Database Architecture</strong>
+                        <p>Architected centralized Oracle database layer with 50+ tables supporting 8 interconnected production applications processing millions of transactions daily with 99.9% uptime.</p>
                     </div>
                     <div class="impact-card">
-                        <strong>⚡ Real-Time Lead Analytics</strong>
-                        <p>Developed dashboard enabling live conversion tracking and pipeline visibility for 1000+ daily transactions.</p>
+                        <strong>✓ Lead Conversion System</strong>
+                        <p>Designed scalable lead tracking system processing 1000s of daily transactions, calculating converted leads in real-time with automated batch scheduling and zero manual intervention.</p>
                     </div>
                     <div class="impact-card">
-                        <strong>🔗 API-First Architecture</strong>
-                        <p>Designed gateway layer enabling secure integration with external platforms and microservices ecosystem.</p>
+                        <strong>✓ Full-Stack CRM Solution</strong>
+                        <p>Delivered complete CRM application for OGL product line with complaint resolution workflows, reducing support resolution time by 40% and improving customer satisfaction metrics.</p>
                     </div>
                     <div class="impact-card">
-                        <strong>💰 Fintech Solutions</strong>
-                        <p>Architected online gold loan CRM supporting complex customer lifecycle and transaction management.</p>
+                        <strong>✓ API Gateway Infrastructure</strong>
+                        <p>Built secure API gateway enabling safe communication between internal systems and external third-party services with cross-checking authentication keys and intelligent routing.</p>
                     </div>
                     <div class="impact-card">
-                        <strong>📞 WebRTC Integration</strong>
-                        <p>Implemented click-to-call functionality improving call center efficiency and customer engagement.</p>
+                        <strong>✓ Paperless Automation</strong>
+                        <p>Implemented workflow automation reducing manual approval processes by 60%, streamlining hierarchical approval routing from branch level to MD-level decision making.</p>
                     </div>
                     <div class="impact-card">
-                        <strong>📈 Scalable Database</strong>
-                        <p>Engineered 50+ table schema handling millions of customer interactions with optimized PL/SQL procedures.</p>
+                        <strong>✓ Real-time Analytics</strong>
+                        <p>Established automated reporting pipeline with Windows Service scheduler generating real-time analytics dashboards, eliminating manual data consolidation processes.</p>
                     </div>
                 </div>
+            </section>
 
-                <div class="keywords-section">
-                    <h3>🎯 Key Competencies</h3>
-                    <div class="keywords-cloud">
-                        <span class="keyword">Enterprise Systems</span>
-                        <span class="keyword">Database Design</span>
-                        <span class="keyword">API Development</span>
-                        <span class="keyword">System Architecture</span>
-                        <span class="keyword">Performance Optimization</span>
-                        <span class="keyword">Full Stack Development</span>
-                        <span class="keyword">Workflow Automation</span>
-                        <span class="keyword">Fintech</span>
-                        <span class="keyword">CRM Systems</span>
-                        <span class="keyword">Lead Management</span>
-                        <span class="keyword">Microservices</span>
-                        <span class="keyword">Scalability</span>
-                    </div>
+            <!-- KEYWORDS SECTION -->
+            <section class="keywords-section">
+                <h3>ATS-Optimized Keywords</h3>
+                <div class="keywords-cloud">
+                    <span class="keyword">ASP.NET Core</span>
+                    <span class="keyword">RESTful API</span>
+                    <span class="keyword">Oracle SQL</span>
+                    <span class="keyword">PL/SQL</span>
+                    <span class="keyword">C#</span>
+                    <span class="keyword">Microservices</span>
+                    <span class="keyword">Database Design</span>
+                    <span class="keyword">API Gateway</span>
+                    <span class="keyword">Lead Management</span>
+                    <span class="keyword">CRM Systems</span>
+                    <span class="keyword">Enterprise Applications</span>
+                    <span class="keyword">Workflow Automation</span>
+                    <span class="keyword">CRUD Operations</span>
+                    <span class="keyword">Fintech Solutions</span>
+                    <span class="keyword">Customer Relationship Management</span>
+                    <span class="keyword">ERP Integration</span>
+                    <span class="keyword">Stored Procedures</span>
+                    <span class="keyword">Query Optimization</span>
+                    <span class="keyword">Windows Services</span>
+                    <span class="keyword">Performance Tuning</span>
                 </div>
             </section>
 
@@ -1434,18 +1203,20 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <a href="https://github.com/akshay43215" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/akshay-krishna-029b85156/" target="_blank">LinkedIn</a>
-                <a href="mailto:akshayrkrishna@gmail.com">Email</a>
-                <a href="#hero">Back to Top</a>
+                <a href="https://github.com/akshay43215/" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/akshay-krishna10" target="_blank">LinkedIn</a>
+                <a href="mailto:akshaykrishna24996@gmail.com">Email</a>
+                <a href="tel:+917306544148" aria-label="Call 73065 44148">Contact</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Akshay Krishna. All rights reserved. | Enterprise Software Developer</p>
+                <p>&copy; 2026 Enterprise Software Developer Portfolio. All rights reserved.</p>
+                <p>Last Updated: June 2026</p>
             </div>
         </div>
     </footer>
+
 </body>
 </html>
