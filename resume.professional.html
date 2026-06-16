@@ -92,6 +92,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* Desktop Navigation */
         nav ul { 
             display: flex; 
             gap: 2px; 
@@ -152,6 +153,103 @@
 
         nav i {
             font-size: 13px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            width: 100%;
+            padding: 15px 20px;
+            list-style: none;
+            flex-direction: column;
+            gap: 8px;
+            animation: slideDown 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu li {
+            width: 100%;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.9); 
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .mobile-menu a:hover {
+            color: white;
+            background: rgba(14, 165, 233, 0.25);
+        }
+
+        .mobile-menu a.active {
+            color: white;
+            background: rgba(14, 165, 233, 0.25);
+            border: 1px solid rgba(14, 165, 233, 0.6);
+        }
+
+        .mobile-menu i {
+            font-size: 14px;
+            min-width: 16px;
         }
 
         #hero {
@@ -632,36 +730,20 @@
 
         /* ===== RESPONSIVE - TABLET & MOBILE ===== */
         @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             header {
                 padding: 10px 0;
             }
 
             nav {
-                flex-wrap: wrap;
                 gap: 12px;
-                align-content: flex-start;
-            }
-
-            nav ul {
-                gap: 3px;
-                width: 100%;
-                margin-top: 6px;
-            }
-
-            nav a {
-                padding: 5px 10px;
-                font-size: 11px;
-                gap: 3px;
-            }
-
-            nav i {
-                font-size: 11px;
-            }
-
-            .logo {
-                flex-basis: 100%;
-                text-align: center;
-                margin-bottom: 2px;
             }
 
             .logo-main {
@@ -720,21 +802,6 @@
                 gap: 8px;
             }
 
-            nav ul {
-                gap: 2px;
-                margin-top: 5px;
-            }
-
-            nav a {
-                padding: 4px 8px;
-                font-size: 10px;
-                gap: 2px;
-            }
-
-            nav i {
-                display: none;
-            }
-
             .logo-main {
                 font-size: 14px;
                 letter-spacing: 0px;
@@ -743,6 +810,18 @@
             .logo-sub {
                 font-size: 6px;
                 letter-spacing: 1px;
+            }
+
+            .mobile-menu {
+                width: 100vw;
+                right: -20px;
+                padding: 12px 20px;
+                gap: 6px;
+            }
+
+            .mobile-menu a {
+                padding: 8px 10px;
+                font-size: 12px;
             }
 
             #hero {
@@ -792,23 +871,42 @@
         }
     </style>
     <script>
-        const navLinks = document.querySelectorAll('#navLinks a');
+        const navLinks = document.querySelectorAll('nav a, .mobile-menu a');
         const sections = ['expertise','projects','skills','impact'].map(id => document.getElementById(id));
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-        window.addEventListener('scroll', () => {
-        let current = sections[0];
-        sections.forEach(sec => {
-            if (window.scrollY >= sec.offsetTop - 120) current = sec;
-        });
-        navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
+        // Toggle hamburger menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
         });
 
+        // Close menu when link is clicked
         navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            document.getElementById(link.dataset.section)
-            .scrollIntoView({ behavior: 'smooth' });
+            link.addEventListener('click', (e) => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                e.preventDefault();
+                document.getElementById(link.dataset.section)
+                .scrollIntoView({ behavior: 'smooth' });
+            });
         });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            let current = sections[0];
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 120) current = sec;
+            });
+            navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current.id));
+        });
+
+        // Logo click to home
+        document.querySelector('.logo').addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.getElementById('hero').scrollIntoView({behavior:'smooth'});
         });
     </script>
 </head>
@@ -818,11 +916,22 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo"  onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+                <div class="logo">
                     <span class="logo-main">PORT<span>FOLIO</span></span>
                     <span class="logo-sub">Akshay Krishna</span>
                 </div>
                 <ul id="navLinks">
+                    <li><a href="#expertise" data-section="expertise"><i class="ti ti-bolt"></i> Expertise</a></li>
+                    <li><a href="#projects" data-section="projects"><i class="ti ti-layout-grid"></i> Projects</a></li>
+                    <li><a href="#skills" data-section="skills"><i class="ti ti-code"></i> Skills</a></li>
+                    <li><a href="#impact" data-section="impact"><i class="ti ti-trending-up"></i> Impact</a></li>
+                </ul>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="mobile-menu">
                     <li><a href="#expertise" data-section="expertise"><i class="ti ti-bolt"></i> Expertise</a></li>
                     <li><a href="#projects" data-section="projects"><i class="ti ti-layout-grid"></i> Projects</a></li>
                     <li><a href="#skills" data-section="skills"><i class="ti ti-code"></i> Skills</a></li>
