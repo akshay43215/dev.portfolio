@@ -569,7 +569,7 @@
         }
 
         /* ===== PRINT BUTTON ===== */
-        .print-btn {
+        /* .print-btn {
             position: fixed;
             bottom: 24px;
             right: 24px;
@@ -589,12 +589,35 @@
         .print-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
+        } */
+        /* ===== DOWNLOAD BUTTON ===== */
+        .download-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
         }
 
         @media print {
             body { background: white; padding: 0; }
             .container { box-shadow: none; }
-            .print-btn { display: none; }
+            /* .print-btn { display: none; } */
+            .download-btn { display: none; }
             header { position: static; }
         }
 
@@ -609,7 +632,8 @@
             .btn { width: 100%; max-width: 280px; }
             .projects-grid { grid-template-columns: 1fr; }
             .expertise-grid { grid-template-columns: 1fr; }
-            .print-btn { bottom: 16px; right: 16px; padding: 10px 20px; font-size: 12px; }
+            /* .print-btn { bottom: 16px; right: 16px; padding: 10px 20px; font-size: 12px; } */
+            .download-btn { bottom: 16px; right: 16px; padding: 10px 20px; font-size: 12px; }
             #hero { padding: 60px 0; }
             section { padding: 60px 0; }
         }
@@ -667,8 +691,8 @@
     </script>
 </head>
 <body>
-    <button class="print-btn" onclick="window.print()">📄 Print/PDF</button>
-
+    <!-- <button class="print-btn" onclick="window.print()">📄 Print/PDF</button> -->
+     <button class="download-btn" id="downloadPdfBtn" onclick="window.location.href='assets/Akshay_Krishna.Resume@26.pdf'" title="Download as PDF">📄 Download PDF</button>
     <!-- HEADER -->
     <header>
         <div class="container">
@@ -1280,6 +1304,11 @@
     <!-- FOOTER -->
     <footer id="contact">
         <div class="container">
+            <div class="footer-content">
+                <a href="https://akshay43215.github.io/dev.portfolio/resume.professional.html" title="View Professional Resume">
+                    <i class="ti ti-briefcase"></i> Professional Portfolio
+                </a>
+            </div>
             <div class="footer-content">
                 <a href="https://github.com/akshay43215" target="_blank" rel="noopener noreferrer">
                     <i class="ti ti-brand-github"></i> GitHub
