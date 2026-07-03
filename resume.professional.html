@@ -539,7 +539,7 @@
             opacity: 0.85;
         }
 
-        .print-btn:hover {
+        /* .print-btn:hover {
             background: #764ba2;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
@@ -559,6 +559,28 @@
             font-weight: 600;
             transition: all 0.3s;
             z-index: 100;
+        } */
+         /* ===== DOWNLOAD BUTTON ===== */
+        .download-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
         }
 
         @media print {
@@ -572,7 +594,7 @@
                 border-radius: 0;
             }
             
-            .print-btn {
+            .download-btn {
                 display: none;
             }
         }
@@ -613,7 +635,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .print-btn {
+            .download-btn {
                 bottom: 10px;
                 right: 10px;
                 padding: 8px 16px;
@@ -663,7 +685,8 @@
     </script>
 </head>
 <body>
-    <button class="print-btn" onclick="window.print()">📄 Print/PDF</button>
+    <!-- <button class="print-btn" onclick="window.print()">📄 Print/PDF</button> -->
+     <button class="download-btn" id="downloadPdfBtn" onclick="window.location.href='assets/Akshay_Krishna.Resume@26.pdf'" title="Download as PDF">📄 Download PDF</button>
     <!-- HEADER -->
     <header>
         <div class="container">
@@ -1205,6 +1228,11 @@
     <!-- FOOTER -->
     <footer id="contact">
         <div class="container">
+            <div class="footer-content">
+                 <a href="https://akshay43215.github.io/dev.portfolio/resume.personal.html" title="View Personal Resume">
+                <i class="ti ti-user"></i> Personal Portfolio
+            </a>
+            </div>
             <div class="footer-content">
                 <a href="https://github.com/akshay43215/" target="_blank">GitHub</a>
                 <a href="https://www.linkedin.com/in/akshay-krishna10" target="_blank">LinkedIn</a>
